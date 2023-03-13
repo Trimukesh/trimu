@@ -4,7 +4,6 @@ on: push
 jobs:
   deployment:
     runs-on: ubuntu-latest
-    environment: dev
     steps:
     - uses: trstringer/manual-approval@v1
       with:
