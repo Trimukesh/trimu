@@ -2,12 +2,25 @@ name: Deployment
 
 on: push
 jobs:
-  deployment:
+
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
     steps:
-    - uses: trstringer/manual-approval@v1
-      with:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+  
+      - uses: macnev2013/manual-approval@latest
+        with:
           secret: ${{ github.TOKEN }}
           approvers: srinivasareddy4218,steja6872
-          minimum-approvals: 1
+          minimum approvers: 1
           issue-title: "Deploying v1.3.5 to prod from staging"
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
